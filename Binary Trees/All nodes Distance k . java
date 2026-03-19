@@ -1,0 +1,68 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        
+        HashMap<TreeNode, TreeNode> parentMap = new HashMap<>();
+        buildParentMap(root, null, parentMap);
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        HashSet<TreeNode> visited = new HashSet<>();
+        
+        queue.add(target);
+        visited.add(target);
+        
+        int distance = 0;
+        
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            
+            if(distance == k) break;
+            
+            for(int i = 0; i < size; i++) {
+                TreeNode curr = queue.poll();
+                
+                if(curr.left != null && !visited.contains(curr.left)) {
+                    queue.add(curr.left);
+                    visited.add(curr.left);
+                }
+                
+                if(curr.right != null && !visited.contains(curr.right)) {
+                    queue.add(curr.right);
+                    visited.add(curr.right);
+                }
+                
+                if(parentMap.get(curr) != null && !visited.contains(parentMap.get(curr))) {
+                    queue.add(parentMap.get(curr));
+                    visited.add(parentMap.get(curr));
+                }
+            }
+            
+            distance++;
+        }
+        
+        List<Integer> result = new ArrayList<>();
+        while(!queue.isEmpty()) {
+            result.add(queue.poll().val);
+        }
+        
+        return result;
+    }
+    
+    public void buildParentMap(TreeNode node, TreeNode parent, HashMap<TreeNode, TreeNode> map) {
+        if(node == null) return;
+        
+        map.put(node, parent);
+        
+        buildParentMap(node.left, node, map);
+        buildParentMap(node.right, node, map);
+    }
+}
