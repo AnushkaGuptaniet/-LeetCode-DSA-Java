@@ -1,43 +1,38 @@
-import java.util.Scanner;
-public class LinkedList {
-
-    public static class Node{
+public class InsertionAtHeadLL {
+    static class Node{
         int data;
         Node next;
         Node(int data){
             this.data = data;
+            this.next = null;
         }
     }
-
-    public static void displayLinkedList(Node head){
-        Node temp = head;
-        while(temp != null){
-            System.out.print(temp.data + " ");
-            temp = temp.next;
-        }
-    }
-
-    public static Node insertAtBegin(Node head){
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter node: ");
-        int val = input.nextInt();
-        Node x = new Node(val);
-        x.next = head;
-        return x;
-    }
-
-    public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-        Node a = new Node(5);
-        Node b = new Node(10);
-        Node c = new Node(15);
-        Node d = new Node(20);
-        Node e = new Node(25);
+    public static void main(String[] args){
+        Node a = new Node(1);
+        Node b = new Node(2);
+        Node c = new Node(3);
         a.next = b;
         b.next = c;
-        c.next = d;
-        d.next = e;
-        a = insertAtBegin(a);
-        displayLinkedList(a);
+        Node head = a;
+        int X = 7;
+        head = insertAtHead(head,X);
+        displayList(head);
+    }
+    public static Node insertAtHead(Node head, int X){
+        Node temp = new Node(X);
+        if(head == null){
+            temp = head;
+        }else{
+            temp.next = head;
+            head = temp;
+        }
+        return head;
+    }
+    public static void displayList(Node head){
+        Node curr = head;
+        while(curr != null){
+            System.out.print(curr.data + " ");
+            curr = curr.next;
+        }
     }
 }
