@@ -1,0 +1,45 @@
+import java.util.*;
+public class Prob26 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("size = ");
+        int size = sc.nextInt();
+        int[] nums = new int[size];
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        System.out.println(removeDuplicates(nums, n));
+
+    }
+//    public static int removeDuplicates(int[] nums, int n){           // brute force
+//        ArrayList<Integer> list = new ArrayList<>();
+//        list.add(nums[0]);
+//        for(int i = 1; i < n; i++){
+//            if(nums[i] != nums[i-1]){
+//                list.add(nums[i]);
+//            }
+//        }
+//        for(int i = 0 ; i < list.size(); i++){
+//            nums[i] = list.get(i);
+//        }
+//        return list.size();
+//    }
+// TC:-O(n), SC:- O(n)
+
+
+    public static int removeDuplicates(int[] nums, int n){        // OPtimal - two pointers
+        int i = 0;
+        for(int j = 0; j < n; j++){
+            if(nums[i] != nums[j]){
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+        return i+1;
+    }
+
+}
+
+// TC:-O(n), SC:- O(1)
+
