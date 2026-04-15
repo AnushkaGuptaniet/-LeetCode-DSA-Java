@@ -5,29 +5,24 @@
 
 
 // Approach 2: optimal maths approach
-import java.util.*;
-public class CheckPalindrome {
+import java.util.Scanner;
+public class Prob9 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter a digit: ");
-        int x = input.nextInt();
-        System.out.println(checkPalindrome(x));
+        Scanner sc = new Scanner(System.in);
+        System.out.print("x = ");
+        int x = sc.nextInt();
+        System.out.println(isPalindrome(x));
     }
-    public static boolean checkPalindrome(int x){
-        if (x < 0){
-            return false;
-        }
-        int original = x;
+    public static boolean isPalindrome(int x){
         int rev = 0;
-        while(x!=0){
+        while(x > rev){
             int digit = x % 10;
-            rev = rev * 10 + digit ;
-            x = x/ 10;
+            rev = rev * 10 + digit;
+            x = x / 10;
         }
-        return original == rev;
+        return (x == rev || x == rev / 10);
     }
 }
-
 // TC : O(log n), SC: O(1)
 
 
