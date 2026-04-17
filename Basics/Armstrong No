@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class Prob1134 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("n = ");
+        int n = sc.nextInt();
+        System.out.println(checkArmstrong(n));
+    }
+//    public static boolean checkArmstrong(int n){
+//        // brute force approach
+//        int original = n;
+//        int count = 0;
+//        int temp =n;
+//        while(temp > 0){
+//            count++;
+//            temp /= 10;
+//        }
+//        int sum = 0;
+//        temp = n;
+//        while(temp > 0){
+//            int digit = temp % 10;
+//            int power = 1;
+//            for(int i = 0; i < count; i++){
+//                power *= digit;
+//            }
+//            sum += power ;
+//            temp /= 10;
+//
+//        }
+//        return sum == original;
+//    }
+    //TC:- O(d x k), SC:- O(n)
+
+
+    // optimal approach
+    public static boolean checkArmstrong(int n){
+        int count = 0;
+        int temp = n;
+        int original = n;
+        while(temp > 0){
+            count++;
+            temp /= 10;
+        }
+        temp = n;
+        int sum = 0;
+        while (temp > 0){
+            int digit = temp % 10;
+            sum += Math.pow(digit, count);
+            temp /= 10;
+        }
+        return original == sum;
+    }
+    // TC: - O(d), SC:-O(1)
+}
