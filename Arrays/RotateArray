@@ -1,0 +1,48 @@
+import java.util.Scanner;
+public class Prob189 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter n: ");
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        System.out.print("k = ");
+        int k = sc.nextInt();
+        for(int i = 0; i < n; i++){
+          nums[i] = sc.nextInt();
+        }
+        rotateArray(nums, k, n);
+        for(int i = 0; i < n; i++){
+            System.out.print(nums[i] + " ");
+        }
+    }
+    public static void rotateArray(int[] nums, int k, int n){
+        // brute force
+//        k = k % n;
+//        for(int i = 0; i < k; i++){
+//            int last = nums[n - 1];
+//            for(int j = n - 1; j > 0; j--){
+//                nums[j] = nums[j- 1];
+//            }
+//            nums[0] = last;
+//        }
+        // TC:- O(n x k), SC:O(n)
+
+        // optimal approach (reverse)
+
+            k = k % n;
+            reverse(nums, 0, n-1);
+            reverse(nums, 0 ,k-1);
+            reverse(nums, k , n-1);
+    }
+    public static void reverse(int[] nums, int start, int end){
+        while(start < end){
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    
+    // TC:-O(n), SC:O(1)
+}
