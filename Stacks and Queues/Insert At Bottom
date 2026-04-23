@@ -1,0 +1,29 @@
+
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class InsertAtBottom {
+    public static void main(String[] args) {
+        Stack<Integer> st = new Stack<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter no of elements : ");
+        int n = sc.nextInt();
+        System.out.print("Enter Elements: ");
+        for(int i = 0; i < n; i++){
+            int inp = sc.nextInt();
+            st.push(inp);
+        }
+        int x = 7;
+        Stack<Integer> temp = new Stack<>();
+        while(st.size() > 0){
+            temp.push(st.pop());
+        }
+        st.push(x);
+        while(temp.size() > 0){
+            st.push(temp.pop());
+        }
+        System.out.print("Updated Stack : " + st);
+    }
+}
+// TC: O(2n) ~= O(n), SC: O(n)
