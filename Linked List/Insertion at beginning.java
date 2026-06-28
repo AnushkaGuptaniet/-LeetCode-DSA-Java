@@ -1,12 +1,12 @@
-public class InsertionAtHeadLL {
-    static class Node{
-        int data;
-        Node next;
-        Node(int data){
-            this.data = data;
-            this.next = null;
-        }
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        this.next = null;
     }
+}
+public class InsertionAtHeadLL {
     public static void main(String[] args){
         Node a = new Node(1);
         Node b = new Node(2);
@@ -14,18 +14,14 @@ public class InsertionAtHeadLL {
         a.next = b;
         b.next = c;
         Node head = a;
-        int X = 7;
-        head = insertAtHead(head,X);
+        int data = 7;
+        head = insertAtHead(head,data);
         displayList(head);
     }
-    public static Node insertAtHead(Node head, int X){
-        Node temp = new Node(X);
-        if(head == null){
-            temp = head;
-        }else{
-            temp.next = head;
-            head = temp;
-        }
+    public static Node insertAtHead(Node head, int data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
         return head;
     }
     public static void displayList(Node head){
@@ -36,6 +32,4 @@ public class InsertionAtHeadLL {
         }
     }
 }
-
-
-// TC , SC : O(1)
+// TC: O(1), SC: O(1)
