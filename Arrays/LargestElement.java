@@ -11,14 +11,23 @@ public class LargestElement {
         int ans = largestElement(nums, n);
         System.out.println(ans);
     }
+    // approach 1 : brute force(Sorting)
     public static int largestElement(int[] nums, int n){
-        int largest = 0;
-        for(int i = 0; i < n; i++){
-            if(nums[i] > largest){
-                largest = nums[i];
-            }
-        }
-        return largest;
+        Arrays.sort(nums);
+        return nums[nums.length - 1];
     }
+    
+    // TC: O(n log n), SC:O(log n)
+    
+    // approach 2: optimal
+   public static int largestElement(int[] nums, int n){
+       int max = 0;
+       for(int i = 0; i < n; i++){
+           if(nums[i] > max){
+               max = nums[i];
+           }
+       }
+       return max;
+   }
 }
- // TC :O(n), SC:O(1)
+// TC:O(n), SC:O(1)
