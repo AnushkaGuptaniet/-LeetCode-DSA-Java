@@ -1,13 +1,12 @@
-public class Problem237 {
-    static class Node{
-        int data;
-        Node next;
-        Node(int data){
-            this.data = data;
-            this.next = null;
-        }
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        this.next = null;
     }
-
+}
+public class Problem237 {
     public static void main(String[] args) {
         Node a = new Node(4);
         Node b = new Node(5);
@@ -21,8 +20,10 @@ public class Problem237 {
         displayList(deleteNode(node, head));
     }
     public static Node deleteNode(Node node, Node head){
-        node.data = node.next.data;
-        node.next = node.next.next;
+        if(head == null){
+            return null;
+        }
+        head = head.next;
         return head;
     }
     public static void displayList(Node head){
@@ -33,5 +34,4 @@ public class Problem237 {
         }
     }
 }
-
-// TC:- O(1), SC:- O(1)
+// TC:O(1), SC:O(1)
