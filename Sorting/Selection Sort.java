@@ -1,23 +1,33 @@
 public class SelectionSort {
     public static void main(String[] args) {
-        int[] arr = {64,25,12,22,11};
-        int n = arr.length;
-        selectionSort(arr,n);
-        for (int i = 0; i < n; i++){
-            System.out.println(arr[i] + " ");
+        int[] nums = {7,4,1,5,3};
+        selectionSort(nums);
+        for(int i = 0; i < nums.length; i++){
+            System.out.print(nums[i] + " ");
         }
+
     }
-    static void selectionSort(int[] arr, int n){
-        for(int i = 0; i < n; i++){
+    public static void selectionSort(int[] nums){
+        int n = nums.length;
+        for(int i = 0; i < n-1; i++){
             int minIndex = i;
-            for (int j = i + 1; j < n; j++){
-                if(arr[j] < arr[minIndex]){
-                    minIndex = j;
+            for(int j = i+1; j < n; j++){
+                if(nums[j] < nums[minIndex]){
+                    minIndex = j ;
                 }
             }
-            int temp = arr[minIndex];
-            arr[minIndex] = arr[i];
-            arr[i] = temp;
+            int temp = nums[i];
+            nums[i] = nums[minIndex];
+            nums[minIndex] = temp;
         }
     }
 }
+
+// optimized version (avoid unnecessary swaps) 
+if(minIndex != i){
+int temp = nums[i];
+nums[i]=nums[minIndex];
+nums[minIndex]=temp;
+}
+// TC: O(n^2) for all cases, SC: O(1)
+
