@@ -1,0 +1,73 @@
+import java.util.*;
+class PreOrderTraversal {
+    static class Node{
+        int data;
+        Node left, right;
+        Node(int data){
+            this.data = data;
+        }
+    }
+    public static void main(String[] args){
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        preOrder(root);
+    }
+
+    // Approach 1: Recursive
+//    public static void preOrder(Node root){
+//        if(root == null)
+//            return;
+//        System.out.print(root.data + " ");
+//        preOrder(root.left);
+//        preOrder(root.right);
+//    }
+    // TC: O(n), SC: O(log n) in case if tree is balanced , O(n) worst case
+
+    // Approach 2 : using stack
+//    public static void preOrder(Node root){
+//        if (root == null)
+//            return;
+//        Stack<Node> stack = new Stack<>();
+//        stack.push(root);
+//        while(!stack.isEmpty()){
+//            Node current = stack.pop();
+//            System.out.print(current.data + " ");
+//            if(current.left != null){
+//                preOrder(current.left);
+//            }
+//            if(current.right != null){
+//                preOrder(current.right);
+//            }
+//        }
+//    }
+    // TC: O(n), SC: O(n)
+
+    // Approach 3 : Morris Traversal
+    public static void preOrder(Node root){
+        Node current = root;
+        while(current != null){
+            if(current.left == null){
+                System.out.print(current.data + " ");
+                current = current.right;
+            }else{
+                Node predecessor = current.left;
+                while(predecessor.right != null && predecessor.right !=  current){
+                    predecessor = predecessor.right;
+                }
+                if(predecessor.right == null){
+                    System.out.print(current.data + " ");
+                    predecessor.right = current;
+                    current = current.left;
+                }else{
+                    predecessor.right = null;
+                    current = current.right;
+                }
+            }
+        }
+    }
+    // TC: O(n), SC : O(1)
+
+}
