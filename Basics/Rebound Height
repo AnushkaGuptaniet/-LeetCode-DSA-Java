@@ -1,0 +1,11 @@
+public class ReboundHeight {
+    public static void main(String[] args) {
+        int H = 100;
+        int V = 10;
+        int Vn = 5;
+        double e = (double) Vn / V;
+        double Height = H * Math.pow(e, 2 );
+        System.out.println((int) Height);
+    }
+}
+// TC:O(1), SC: O(1)
